@@ -1,0 +1,24 @@
+name:CI CD Practice 
+on:
+  push:
+    branches: 
+    - main 
+
+job:
+   deploy:
+    runs-on: ubuntu-latest
+    steps:
+     
+      - name: Checkout code
+        uses: actions/checkout@v4
+       
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 172.30.3.100
+          username: saif
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /home/saif/CICD
+            git pull
+            npm run dev
