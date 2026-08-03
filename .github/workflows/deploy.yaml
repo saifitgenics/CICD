@@ -1,17 +1,20 @@
-name:CI CD Practice 
+name: CI CD Practice
+
 on:
   push:
-    branches: 
-    - main 
+    branches:
+      - main
 
-job:
-   deploy:
-    runs-on: ubuntu-latest
+jobs:
+  deploy:
+
+    runs-on: self-hosted
+
     steps:
-     
+
       - name: Checkout code
         uses: actions/checkout@v4
-       
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -21,4 +24,5 @@ job:
           script: |
             cd /home/saif/CICD
             git pull
-            npm run dev
+            npm install
+            npm run build
