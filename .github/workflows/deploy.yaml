@@ -19,18 +19,12 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 172.30.3.100
-          username: saif
-          key: -----BEGIN OPENSSH PRIVATE KEY-----
-                b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-                QyNTUxOQAAACD364jeAE/fblDj9WAQ+zvsppMWE7LpADxw6lRIAo1yzgAAAJgam6XwGpul
-                8AAAAAtzc2gtZWQyNTUxOQAAACD364jeAE/fblDj9WAQ+zvsppMWE7LpADxw6lRIAo1yzg
-                AAAEDjySHmSPRHsxvHzqVbxr8jdYZDJbun8l9HJbAx9C5NovfriN4AT99uUOP1YBD7O+ym
-                kxYTsukAPHDqVEgCjXLOAAAADmdpdGh1Yi1hY3Rpb25zAQIDBAUGBw==
-                -----END OPENSSH PRIVATE KEY-----
+          host: ${{secrets.SSH_HOST}}
+          username: ubuntu
+          key: ${{secrets.SSH_PRIVATE_KEY}}
 
           script: |
-            cd /home/saif/CICD
+            cd /home/ubuntu/CICD
             git pull
             npm install
-            npm run build
+            npm run dev
