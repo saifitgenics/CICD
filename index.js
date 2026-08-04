@@ -5,7 +5,7 @@ const app = express();
 
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.send('Mic check 1234!');
 });
 
 const PORT = process.env.PORT || 3000;
